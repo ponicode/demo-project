@@ -6,9 +6,9 @@ const logger = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const emailRouter = require("./routes/email");
+const { router: indexRouter } = require("./routes/index");
+const { router: usersRouter } = require("./routes/users");
+const { router: emailRouter } = require("./routes/email");
 
 const app = express();
 

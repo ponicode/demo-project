@@ -13,9 +13,13 @@ function filterUsers(minAge, maxAge) {
 router.get("/", function(req, res, next) {
   const { minAge, maxAge } = req.query;
 
-  const users = filterUsers(minAge, maxAge);
+  const users = filterUsers(parseInt(minAge), parseInt(maxAge));
 
   res.json({ users: users });
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  filterUsers,
+  isAgeValid
+};

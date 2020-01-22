@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./App.module.css";
-import Menu from "./components/Menu/Menu";
 import Playground from "./components/Playground/Playground";
 
 function App() {

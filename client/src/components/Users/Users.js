@@ -14,11 +14,11 @@ function Users() {
   const [maxAge, setMaxAge] = useState(100);
 
   useEffect(() => {
-    getUsers(minAge, maxAge);
+    getUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function getUsers(minAge, maxAge) {
+  function getUsers() {
     if (minAge === "") {
       setMinAge("0");
     }
@@ -86,21 +86,35 @@ function Users() {
     }
   }
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      getUsers();
+    }
+  }
+
   return (
     <div className={styles.component}>
       <div className={styles.filter}>
         <p>
           min age:{" "}
-          <input type={"number"} value={minAge} onChange={setMinAgeHandler} />
+          <input
+            type={"number"}
+            value={minAge}
+            onChange={setMinAgeHandler}
+            onKeyDown={handleKeyDown}
+          />
         </p>
         <p>
           max age:{" "}
-          <input type={"number"} value={maxAge} onChange={setMaxAgeHandler} />
+          <input
+            type={"number"}
+            value={maxAge}
+            onChange={setMaxAgeHandler}
+            onKeyDown={handleKeyDown}
+          />
         </p>
-        <p
-          className={styles.filterButton}
-          onClick={() => getUsers(minAge, maxAge)}
-        >
+        <p className={styles.filterButton} onClick={() => getUsers()}>
           FILTER USERS
         </p>
       </div>
