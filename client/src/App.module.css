@@ -1,0 +1,19 @@
+.app {
+  text-align: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.header {
+  /* background-color: #ededed; */
+  height: 2rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  padding: 2rem;
+  border-bottom: 2px solid #f2f2f2;
+}
