@@ -6,7 +6,8 @@
     "start": "ponicode node ./bin/www",
     "watch": "nodemon ./bin/www",
     "prettier": "prettier --write 'routes/**/*.js' 'app.js'",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "dependencies": {
     "constantinople": "^3.1.2",

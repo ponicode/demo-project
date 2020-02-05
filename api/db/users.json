@@ -1,12 +1,12 @@
 [
     {
-        "name": "Francois",
+        "name": "Jean-Jacques",
         "age": 16,
         "address": {
             "city": "Paris",
             "road": "Rue de Rivoli"
         },
-        "email": "francois-machine@orange.fr"
+        "email": "jean-jacques-gauthier@orange.fr"
     },
     {
         "name": "Polly",
@@ -61,5 +61,32 @@
             "road": "Alexanderstrasse"
         },
         "email": "ian.alexander@gmail.de"
+    },
+    {
+        "name": "Juan",
+        "age": 68,
+        "address": {
+            "city": "Madrid",
+            "road": "Calle de Acalá"
+        },
+        "email": "juanito@gmail.com"
+    },
+    {
+        "name": "Eric",
+        "age": 41,
+        "address": {
+            "city": "Bruxelles",
+            "road": "Avenue Albert"
+        },
+        "email": "eric-keyser-99@gmail.com"
+    },
+    {
+        "name": "Barbara",
+        "age": 18,
+        "address": {
+            "city": "Paris",
+            "road": "Boulevard Magenta"
+        },
+        "email": "_barbie_girl@yahoo.fr"
     }
 ]
