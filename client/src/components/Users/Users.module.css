@@ -1,11 +1,7 @@
 
-.component {
-    
-}
-
 .filter {
-    background-color: grey;
-    padding: 2rem;
+    background-color: rgb(188, 219, 235);
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +16,6 @@
     padding: 0.2rem 0.5rem;
     cursor: pointer;
 }
-
 
 .userBlock {
     border-bottom: 1px solid grey;

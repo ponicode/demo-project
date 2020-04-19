@@ -1,0 +1,9 @@
+  
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(223, 238, 241, 0.925);
+  }
+
+    
+.table-striped tbody tr:nth-of-type(even):hover {
+  background-color: white;
+}
