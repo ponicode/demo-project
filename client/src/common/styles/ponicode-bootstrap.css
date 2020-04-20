@@ -7,3 +7,9 @@
 .table-striped tbody tr:nth-of-type(even):hover {
   background-color: white;
 }
+
+.table td, .table th {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+
+}
