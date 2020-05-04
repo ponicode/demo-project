@@ -10,7 +10,7 @@ function isEmailValid(email) {
   return !unicodePattern.test(email) && re.test(email.toLowerCase());
 }
 
-router.post("/", function(req, res, next) {
+router.post("/", function(req, res) {
   const { email } = req.body;
 
   isValid = isEmailValid(email);
