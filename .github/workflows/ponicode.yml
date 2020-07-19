@@ -20,7 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: ponicode/app_github_app_ut@v1
+    - uses: ponicode/app_github_app_ut
       with:
         repo_path: './' # default: index.docker.io
         auth_token: ${{ secrets.AUTH_TOKEN }}
