@@ -15,3 +15,5 @@ exec('npm start', {
 	stderr && console.error(stderr)
 	error && console.error(error)
 });
+
+console.log('Hello Alex, welcome to our geeky world')
