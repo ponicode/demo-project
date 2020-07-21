@@ -22,4 +22,13 @@ jobs:
     - uses: ponicode/app_github_app_ut@master
       with:
         repo_path: './' # default: index.docker.io
-        auth_token: ${{ secrets.AUTH_TOKEN }} 
+        auth_token: ${{ secrets.AUTH_TOKEN }}
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: "Edmond AOUAD"
+        author_email: edmond@ponicode.com
+        message: "Ponicode Unit tests"
+        add: "*.js"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
