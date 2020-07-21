@@ -23,5 +23,5 @@ jobs:
       with:
         repo_path: './' # default: index.docker.io
         auth_token: ${{ secrets.AUTH_TOKEN }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_secret: ${{ secrets.GITHUB_TOKEN }}
 
