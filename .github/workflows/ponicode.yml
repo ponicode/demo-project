@@ -7,8 +7,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,3 +25,10 @@ jobs:
         auth_token: ${{ secrets.AUTH_TOKEN }}
     - name: Echo 2
       run: ls api/routes
+      # Creates pull request with all changes in file
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v2
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
