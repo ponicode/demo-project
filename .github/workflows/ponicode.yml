@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Echo 1
-      run: ls api/routes
+      run: ls ./
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: ponicode/app_github_app_ut@master
       with:
