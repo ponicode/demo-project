@@ -19,10 +19,10 @@ jobs:
     - name: Echo 1
       run: ls ./
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: ponicode/app_github_app_ut@master
-      with:
-        repo_path: './' # default: index.docker.io
-        auth_token: ${{ secrets.AUTH_TOKEN }}
+    #- uses: ponicode/app_github_app_ut@master
+    #  with:
+    #    repo_path: './' # default: index.docker.io
+    #    auth_token: ${{ secrets.AUTH_TOKEN }}
     - name: Echo 2
       run: ls api/routes
       # Creates pull request with all changes in file
