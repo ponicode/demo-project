@@ -19,7 +19,7 @@ jobs:
     - name: Echo 1
       run: ls api/routes
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: ponicode/app_github_app_ut@master
+    - uses: edmondponycode/act@master
       with:
         repo_path: './' # default: index.docker.io
         auth_token: ${{ secrets.AUTH_TOKEN }}
