@@ -62,7 +62,7 @@ function getClientScoreJs(client){
 }
 
 // Regex Inferer
-function isEmailValid(email) {
+function isEmailValidJs(email) {
     if (typeof email !== "string") {
       return false;
     }
