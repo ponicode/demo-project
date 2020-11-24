@@ -1,4 +1,5 @@
 import urllib
+from z_utils import get_request
 
 URL = "https://api.exchangeratesapi.io/{date}?base={curr}&symbols={symbols}"
 
@@ -6,12 +7,6 @@ URL = "https://api.exchangeratesapi.io/{date}?base={curr}&symbols={symbols}"
 # For the following arguments set ("2020-11-01", "EUR", "USD,JPY")
 # The response should be
 # {"rates":{"JPY":122.36,"USD":1.1698},"base":"EUR","date":"2020-10-30"}
-
-def get_request(url):
-    r = urllib.urlopen(url)
-    data = r.read()
-    r.close()
-    return d
 
 def get_currency_rate_from_urllib(date, base_currency, currencies):
     rates = urllib.urlopen(
