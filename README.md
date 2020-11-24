@@ -11,16 +11,16 @@ Additional Documentation on how to install and link your extension to your Ponic
 
 ## Table of Content
 - JavaScript Unit Testing
-    - [Code](js-md) 
+    - [Code][js-md]
     - [Documentation](.)
 - TypeScript Unit Testing
-    - [Code](ts-md) 
+    - [Code][ts-md]
     - [Documentation](.)
 - Python Unit Testing
-    - [Code](py-md) 
+    - [Code][py-md]
     - [Documentation](.)
 - Instrumentation
-    - [Code](inst-md) 
+    - [Code][inst-md]
     - [Documentation](.)
 
 
