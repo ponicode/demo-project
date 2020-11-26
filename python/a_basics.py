@@ -43,12 +43,12 @@ def get_client_age_generation_py(client):
 # Structured arguments with deep nesting
 def get_client_score_py(client):
     if (client.get('name')['firstname'] is not None) and (client['name']['lastname'] is not None):
-        amount_spend = 0
+        total_compliant_volume = 0
         dates = []
         for i in range(len(client["orders"])):
             if client["orders"][i]["order_id"] != -1 and client["orders"][i]["currency"] == "EUR":
                 dates.append(client["orders"][i]["date"])
-                amount_spend += client["orders"][i]["price"]
-        return amount_spend / len(dates)
+                total_compliant_volume += client["orders"][i]["volume"]
+        return total_compliant_volume / len(dates)
     else:
         return 0

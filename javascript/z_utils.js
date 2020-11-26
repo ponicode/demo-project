@@ -1,6 +1,6 @@
 var axios = require("axios");
 
-var axiosInstance = axios.create();
+var axiosInstance = axios.create({});
 
 module.exports = {
   get: (...x) => {

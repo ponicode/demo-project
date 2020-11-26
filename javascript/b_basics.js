@@ -1,7 +1,7 @@
 // Input Mutation
 function augmentClientDataJs(client){
   if (client.name.lastname && client.name.firstname){
-      if (!client.lastUpdated){
+      if (!('lastUpdated' in client)){
           client.lastUpdated = "2020-11-01"
       }
   }

@@ -47,15 +47,15 @@ function getClientAgeGenerationJs(client){
 // Structured arguments with deep nesting
 function getClientScoreJs(client){
     if (client.age.firstname && client.age.lastname){
-        var amount_spend = 0;
+        var total_compliant_volume = 0;
         var dates = [];
-        for (i = 0; client.orders.length; i++){
+        for (i = 0; i < client.orders.length; i++){
             if (client.orders[i].order_id != -1 && client.orders[i].currency === "EUR"){
                 dates.push(client.orders[i].date)
-                amount_spend += client.orders[i].price
+                total_compliant_volume += client.orders[i].volume
             }
         }
-        return amount_spend / dates.length
+        return total_compliant_volume / dates.length
     } else {
         return 0
     }
