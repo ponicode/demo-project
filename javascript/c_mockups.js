@@ -15,6 +15,10 @@ async function getCurrencyRatesFromCustomJs(date, base_currency, currencies){
     return {}
 }
 
+module.exports = {
+    getCurrencyRatesFromCustomJs
+}
+
 // async function getCurrencyRatesFromAxios(date, base_currency, currencies){
 //     let url = `${URL}${date}?base=${base_currency}&symbols=${currencies}`
 //     let resp = await axios.get(url);

@@ -1,7 +1,12 @@
 var axios = require("axios");
 
 var axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API
+  baseURL: process.env.REACT_APP_API,
 });
 
-export default axiosInstance;
+module.exports = {
+  get: function(...x){
+    return axiosInstance.get(...x);
+  },
+  axiosInstance
+};

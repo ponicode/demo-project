@@ -52,3 +52,10 @@ def get_client_score_py(client):
         return total_compliant_volume / len(dates)
     else:
         return 0
+
+
+#Regex Inferer
+import re
+def isEmailValidPy(email):
+    result = re.search(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", email)
+    return bool(result)
