@@ -1,24 +1,40 @@
-# Demo Project
+# Ponicode Demo Project
 
-## Requirements
-
-- nodejs v12.x (https://nodejs.org/en/)
+This project is a starter kit to dive into Ponicode Unit Testing. Check the full documentation at https://www.ponicode.com/docs/get-started/installation.
 
 ## Installation
+Create your account at **https://app.ponicode.com**
 
-```
-npm install
-npm start
-```
+Install our extension for free in the **VSCode Marketplace**. 
 
-## Summary
+Additional Documentation on how to install and link your extension to your Ponicode is available [**HERE**][documentation]
 
-The goal of this test is to display a list of users using a small ReactJS app.
+## Table of Content
+- JavaScript Unit Testing
+    - [README][js-md]
+    - [Code][js]
+    - [Documentation][documentation]
+- TypeScript Unit Testing
+    - [README][ts-md]
+    - [Code][ts]
+    - [Documentation][documentation]
+- Python Unit Testing
+    - [README][py-md]
+    - [Code][py]
+    - [Documentation][documentation]
+- Instrumentation
+    - [README][inst-md]
+    - [Code][inst]
+    - [Documentation][documentation]
 
-You can get the list of the users with XHR call `GET /users`.
 
-Only one requirement for this test, use `Ponicode` Visual Studio Code plugin (https://github.com/ponicode) to generate the tests.
 
-Reference:
-
-https://app.ponicode.com/onboarding/guide
+[py-md]: ./python/README.md
+[js-md]: ./javascript/README.md
+[ts-md]: ./typescript/README.md
+[inst-md]: ./instrumenter/README.md
+[py]: ./python/
+[js]: ./javascript/
+[ts]: ./typescript/
+[inst]: ./instrumenter/
+[documentation]: https://ponicode.github.io
