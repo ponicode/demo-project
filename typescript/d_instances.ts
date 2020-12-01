@@ -10,10 +10,10 @@ export class Vector {
 
 }
 
-export function sum(v1: Vector, v2: Vector): Vector {
+function sum(v1: Vector, v2: Vector): Vector {
 	return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z)
 }
-export function dot(v1: Vector, v2: Vector): number {
+function dot(v1: Vector, v2: Vector): number {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
 }
 module.exports = { Vector , dot, sum}

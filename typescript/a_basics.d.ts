@@ -6,7 +6,7 @@ export type ClientOrder = {
   order_id: String,
   currency: String,
   date: String,
-  price: number
+  volume: number
 }
 
 export type ClientName = {
