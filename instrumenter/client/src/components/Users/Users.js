@@ -26,7 +26,7 @@ function Users() {
     if (maxAge === "") {
       setMaxAge("100");
     }
-    api
+    api.axiosInstance
       .get("/users", {
         params: {
           minAge: minAge || "0",
@@ -46,7 +46,7 @@ function Users() {
   }
 
   function checkEmailIsValid(email) {
-    api
+    api.axiosInstance
       .post("/email", {
         email
       })
