@@ -7,25 +7,25 @@ Create your account at **https://app.ponicode.com**
 
 Install our extension for free in the **VSCode Marketplace**. 
 
-Additional Documentation on how to install and link your extension to your Ponicode is available [**HERE**](TODO:DOCLINK)
+Additional Documentation on how to install and link your extension to your Ponicode is available [**HERE**][documentation]
 
 ## Table of Content
 - JavaScript Unit Testing
     - [README][js-md]
     - [Code][js]
-    - [Documentation](.)
+    - [Documentation][documentation]
 - TypeScript Unit Testing
     - [README][ts-md]
     - [Code][ts]
-    - [Documentation](.)
+    - [Documentation][documentation]
 - Python Unit Testing
     - [README][py-md]
     - [Code][py]
-    - [Documentation](.)
+    - [Documentation][documentation]
 - Instrumentation
     - [README][inst-md]
     - [Code][inst]
-    - [Documentation](.)
+    - [Documentation][documentation]
 
 
 
@@ -37,3 +37,4 @@ Additional Documentation on how to install and link your extension to your Ponic
 [js]: ./javascript/
 [ts]: ./typescript/
 [inst]: ./instrumenter/
+[documentation]: https://ponicode.github.io
