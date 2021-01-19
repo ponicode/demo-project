@@ -9,9 +9,9 @@ var
 //// DEMO PRIMITIVES ////
 var as_date_formatted = function(date, format, options) {
 
-  if (! date) return '';
+  if ( ! d(date )) return '';
 
-  if ( ! format ) {
+  if ( ! d(format) ) {
     format = get_current_format( options );
   }
 
@@ -68,6 +68,13 @@ var get_timezone = function(options) {
 
   return timezone;
 };
+
+var d = function(date) {
+  if (!date) {
+    return false
+  }
+  return true
+}
 
 module.exports = function(){
   return {
