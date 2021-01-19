@@ -1,0 +1,41 @@
+
+<div class="col-md-9">
+
+  <form method="POST" action="/settings/schedule" id="company_schedule_form">
+  <input type="hidden" name="user_id" value="{{employee.id}}">
+
+  {{> user_details/breadcrumb employee=employee }}
+
+  <div class="form-group">
+    <label for="" class="control-label">Schedule</label>
+
+    <p class="help-block">
+      {{# with schedule }}
+      {{# if (is_user_specific) }}
+        Current employee has <strong data-vpp="declare-user-specific-schedule">custom</strong> schedule.
+      {{else}}
+        Current employee uses <strong><a data-vpp="link-to-company-schedule" href="/settings/general/">company wide</a></strong> schedule.
+      {{/if}}
+      {{/with}}
+    </p>
+
+    <div class="input-group">
+      {{> schedule_widget }}
+    </div>
+
+  </div>
+  <div class="form-group">
+    <div class="pull-right">
+    {{# with schedule }}
+    {{# if (is_user_specific) }}
+      <button type="submit" name="revoke_user_specific_schedule" class="btn btn-default">Move employee to company wide schedule</button>
+      <button type="submit" name="save_user_specific_schedule" class="btn btn-success">Save employee specific schedule</button>
+    {{else}}
+      <button type="submit" name="save_user_specific_schedule" class="btn btn-success">Override company wide schedule</button>
+    {{/if}}
+    {{/with}}
+    </div>
+  </div>
+  </form>
+
+</div>

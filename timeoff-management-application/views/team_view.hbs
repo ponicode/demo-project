@@ -1,0 +1,88 @@
+
+{{> header }}
+
+<h1>Team View</h1>
+
+<div class="row">
+    <div class="col-md-6 lead">{{logged_user.name}} {{logged_user.lastname}}'s team <a href="/calendar/feeds/" data-toggle="tooltip" data-placement="right" title="Export Team View to external calendars"><span class="fa fa-rss"></span></a></div>
+</div>
+
+{{> show_flash_messages }}
+
+<div class="row">&nbsp;</div>
+
+<nav>
+  <div class="row">
+    <div class="col-xs-2">
+      <a class="btn btn-link btn-lg" href="/calendar/teamview/?{{> team_view_url_parameters base_date = prev_date }}"><span aria-hidden="true" class="fa fa-chevron-left"></span> {{as_date_formatted prev_date 'MMM' }}</a>
+    </div>
+
+    <div class="col-xs-8 calendar-section-caption">
+        <button id="team_view_month_select_btn" class="btn btn-link btn-lg" data-tom="/calendar/teamview/?{{> team_view_url_parameters base_date=0 }}" data-provide="datepicker" data-date-format="yyyy-mm" data-date-autoclose="1" data-date-min-view-mode="months">{{as_date_formatted base_date 'MMMM, YYYY' }} <i class="fa fa-angle-down"></i></button>
+    </div>
+
+    <div class="col-xs-2">
+      <a class="btn btn-link btn-lg pull-right" href="/calendar/teamview/?{{> team_view_url_parameters base_date = next_date }}">{{as_date_formatted next_date 'MMM'}} <span aria-hidden="true" class="fa fa-chevron-right"></span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="row">&nbsp;</div>
+
+<div class="row clearfix">
+  <div class="col-md-12">
+    <table class="team-view-table table-hover">
+
+      <thead>
+      <tr>
+        <td class="team-view-header" colspan="2">
+          <div class="dropdown pull-left">
+            <button class="btn btn-default dropdown-toggle left-column-cell" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              {{# if current_department }}{{current_department.name}}{{else}}All departments{{/if}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="?{{> team_view_url_parameters current_department = null }}">All</a></li>
+              <li role="separator" class="divider"></li>
+              {{#each related_departments}}
+              <li><a href="?{{> team_view_url_parameters base_date = ../base_date current_department = this }}">{{this.name}}</a></li>
+              {{/each}}
+            </ul>
+          </div>
+        </td>
+
+      {{# each users_and_leaves.0.days }}
+        <td colspan="2" class="team-view-header"><b>{{as_date_formatted this.moment 'dd'}}</b></td>
+      {{/each}}
+      </tr>
+      </thead>
+
+      <tbody>
+      {{# each users_and_leaves}}
+        <tr class="teamview-user-list-row" data-vpp-user-list-row={{this.user.id}}>
+          <td class="left-column-cell cross-link user-details-summary-trigger" data-user-id={{this.user.id}}>{{# if ../logged_user.admin}} {{#with this.user }}<a href="/users/edit/{{this.id}}/">{{ this.full_name }}</a>{{/with}}  {{else}}{{#with this.user }}<span>{{ this.full_name }}</span>{{/with}}{{/if}}</td>
+          <td>
+            <span class="teamview-deducted-days"
+              {{# if statistics }}
+              data-content="In {{as_date_formatted ../base_date 'MMMM, YYYY' }} {{# with this.user }}{{this.full_name}} used {{../statistics.deducted_days }} days from allowance{{/with}}"
+              data-placement="right"
+              data-toggle="popover"
+              data-trigger="focus hover"
+              {{/if}}
+            >
+            {{# if statistics }}{{ statistics.deducted_days }}{{/if}}
+            </span>
+          </td>
+          {{# each this.days}}
+            {{> calendar_cell day = this}}
+          {{/each}}
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row clearfix">&nbsp;</div>
+
+{{> footer }}

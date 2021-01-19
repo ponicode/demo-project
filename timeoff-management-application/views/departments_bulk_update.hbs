@@ -1,0 +1,95 @@
+
+{{> header }}
+
+<h1>Departments</h1>
+
+{{> show_flash_messages }}
+
+<div class="row">
+  <div class="col-md-4 lead">Departments settings bulk edit</div>
+  <div class="col-md-4 col-md-offset-4">
+    <button class="btn btn-info pull-right" data-toggle="modal" data-target="#add_new_department_modal" type="button" id="add_new_department_btn">Add new department</button>
+    <a href='/settings/departments/'class="btn btn-link pull-right">Overview</a>
+  </div>
+</div>
+
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+    <div class="col-md-4"><label class="control-label">Name</label></div>
+    <div class="col-md-3"><label class="control-label">Allowance</label></div>
+    <div class="col-md-3"><label class="control-label">Manager</label></div>
+    <div class="col-md-2"><label class="control-label">Number of Users</label></div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+<form id="delete_form" method="post" action="/settings/departments/delete/"></form>
+
+<form method="post" action="/settings/departments-bulk-update/" id="edit_department_form">
+
+{{# unless departments.length }}
+<div class="row">
+    <div class="col-md-4">No department records</div>
+</div>
+{{/unless}}
+
+{{#each departments}}
+<div class="row">
+
+    <div class="col-md-4">
+        <input type="text" class="form-control" value="{{name}}" name="name__{{@index}}">
+    </div>
+
+    <div class="col-md-1">
+        <select class="form-control" name="allowance__{{@index}}">
+            {{#each ../allowance_options}}
+            <option value="{{value}}" {{#if_equal this.value ../allowance}} selected="selected"{{/if_equal}}>{{caption}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <input name="include_public_holidays__{{@index}}" id="include_public_holidays__{{@index}}" type="checkbox" {{#if include_public_holidays}}checked="checked"{{/if}}>
+        <label for="include_public_holidays__{{@index}}" class="control-label">Public holidays</label>
+    </div>
+
+    <div class="col-md-3">
+        <select class="form-control" name="boss_id__{{@index}}">
+        {{#each ../company.users}}
+            <option value="{{this.id}}" {{#if_equal this.id ../bossId}} selected="selected"{{/if_equal}}>{{this.full_name}}</option>
+        {{/each}}
+        </select>
+
+   </div>
+
+    <div class="col-md-1"><a class="" href="/users/?department={{ this.id }}">{{this.users.length}}</a></div>
+
+    <div class="col-md-1">
+        <button type="button" class="btn btn-default pull-right departments-remove-btn" data-vpp="{{ @index }}" value="{{ this.id }}"><span class="fa fa-remove"></span></button>
+    </div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+{{/each}}
+
+<div class="row">
+  <div class="col-md-offset-9 col-md-3">
+    <button type="submit" class="btn btn-success pull-right">Save changes</button>
+    <span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+    <a href='/settings/departments-bulk-update/' class="btn btn-link pull-right">Cancel</a>
+  </div>
+</div>
+
+</form>
+
+<div class="row">&nbsp;</div>
+
+{{> add_new_department_modal
+  container_id='add_new_department_modal'
+  form_action='/settings/departments-bulk-update/'
+}}
+
+{{> footer }}

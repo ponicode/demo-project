@@ -1,0 +1,74 @@
+
+{{> header }}
+
+<h1>{{logged_user.name}} {{logged_user.lastname}} messages</h1>
+
+{{> show_flash_messages }}
+
+<div class="row main-row_header">
+  <p class="col-md-12">Leave request to approve</p>
+</div>
+
+<div class="row">
+  {{# unless to_be_approved_leaves}}
+  <div class="col-md-12 text-muted">
+    There are no leave requests to decide on.
+  </div>
+  {{else}}
+  <div class="col-md-12">
+    <p class="visible-xs-block"><em class="text-muted">Scroll table horizontally</em></p>
+    <div class="table-responsive">
+    <table class="table table-hover requests-to-approve-table">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Department</th>
+          <th>Date of request</th>
+          <th>Leave dates</th>
+          <th>Type</th>
+          <th>Days</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each to_be_approved_leaves }}
+        <tr vpp="pending_for__{{this.user.email}}">
+          <td>{{#with this.user}}{{this.full_name}}
+            <i class="fa fa-question-circle user-details-summary-trigger" data-user-id="{{this.id}}"></i>{{/with}}
+          </td>
+          <td>{{this.user.department.name}}</td>
+          <td class="date_of_request">{{as_date_from_timestamp this.createdAt}}</td>
+          <td data-tom-leave-dates="1">{{> leave_dates leave=this}}</td>
+          <td>{{#if this.is_pended_revoke_leave}}REVOKE {{/if}}{{this.leave_type.name}}</td>
+          <td data-vpp="days_used">{{ this.get_deducted_days_number }}</td>
+          <td>
+            <form action="/requests/reject/" method="POST">
+            <input class="btn btn-warning" type="submit" value="Reject">
+            <input type="hidden" value="{{this.id}}" name="request">
+            </form>
+          </td>
+          <td>
+            <form action="/requests/approve/" method="POST">
+            <input class="btn btn-success" type="submit" value="Approve">
+            <input type="hidden" value="{{this.id}}" name="request">
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    </div>
+  </div>
+  {{/unless}}
+</div>
+
+
+<div class="main-row_header">&nbsp;</div>
+
+<div class="row main-row_header">
+  <p class="col-md-12">All my absences</p>
+</div>
+
+{{> user_requests_grouped grouped_leaves=my_leaves_grouped logged_user=logged_user }}
+
+{{>footer}}

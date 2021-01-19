@@ -1,0 +1,56 @@
+
+<div class="modal fade" id="{{container_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form method="POST" action="{{form_action}}" id="add_new_department_form">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add new Department</h4>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="department_name_new" class="control-label">Name:</label>
+          <input type="text" class="form-control" id="department_name_new" name="name__new" required placeholder="New department name">
+        </div>
+
+        <div class="form-group">
+          <label for="department_allowance_new" class="control-label">Allowance:</label>
+          <select class="form-control" id="department_allowance_new" name="allowance__new">
+            {{#each allowance_options}}
+            <option value="{{value}}" {{#if_equal this.value 20}} selected="selected"{{/if_equal}}>{{caption}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" id="department_include_public_holiday_new" name="include_public_holidays__new" checked="checked">&nbsp;
+          <label for="department_include_public_holiday_new" class="control-label">Include Public Holidays?</label>
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" id="department_is_accrued_allowance_new" name="is_accrued_allowance__new">&nbsp;
+          <label for="department_is_accrued_allowance_new" class="control-label">Accrued Allowance?</label>
+        </div>
+
+        <div class="form-group">
+          <label for="department_superwiser_new" class="control-label">Supervisor</label>
+          <select class="form-control" id="department_allowance_new" name="boss_id__new">
+            {{#each company.users}}
+              <option value="{{this.id}}">{{this.full_name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success">Create</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+

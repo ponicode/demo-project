@@ -1,0 +1,327 @@
+
+
+{{> header }}
+
+<h1>General settings</h1>
+
+<p class="lead">Account main settings</p>
+
+{{> show_flash_messages }}
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Company
+      </div>
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="col-md-5">
+            <form class="form-horizontal" method="POST" action="/settings/company/" id="company_edit_form">
+              <div class="form-group">
+                <label for="input_company_name" class="col-md-4 control-label">Company name</label>
+                <div class="col-md-8">
+                  <input class="form-control" id="input_company_name" placeholder="Our company name" value="{{company.name}}" name="name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="input_country" class="col-md-4 control-label">Country</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="input_country" name="country">
+                    {{#each countries}}
+                    <option value="{{@key}}" {{# if_equal @key ../company.country }} selected="selected"{{/if_equal}}>{{@key}}: {{this.name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="input_date_format" class="col-md-4 control-label">Date format</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="input_date_format" name="date_format">
+                    {{#with company}}
+                    {{#each this.get_available_date_formats}}
+                    <option value="{{this}}" {{# if_equal this ../date_format }} selected="selected"{{/if_equal}}>{{this}}</option>
+                    {{/each}}
+                    {{/with}}
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="input_time_zone" class="col-md-4 control-label">Time zone</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="input_time_zone" name="timezone">
+                    {{#each timezones_available}}
+                    <option value="{{this}}" {{# if_equal this ../company.timezone }} selected="selected"{{/if_equal}}>{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="input_carry_over" class="col-md-4 control-label">Carried over days</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="input_carry_over" name="carry_over">
+                    {{#each carryOverOptions}}
+                    <option value="{{this.days}}" {{# if_equal this.days ../company.carry_over }} selected="selected"{{/if_equal}}>{{this.label}}</option>
+                    {{/each}}
+                  </select>
+                    <p>
+                      <em>Number of days in employee allowance that are carried over to the next year.</em>
+                    </p>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                  <div class="checkbox">
+                    <label for="share-all-absences">
+                      <input id="share-all-absences" type="checkbox" name="share_all_absences" {{# if company.share_all_absences }} checked="checked"{{/if}}>Share absences between employees
+                    </label>
+                    <p>
+                      <em>If enabled all employees can see information about everybody's absences regardless departments.</em>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                  <div class="checkbox">
+                    <label for="is-team-view-hidden">
+                      <input id="is-team-view-hidden" type="checkbox" name="is_team_view_hidden" {{# if company.is_team_view_hidden }} checked="checked"{{/if}}>Hide Team View page for non-admin users
+                    </label>
+                    <p>
+                      <em>If marked Team view page is shown only to admin users.</em>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                  <button type="submit" class="btn btn-success pull-right">Save changes</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-md-offset-1 col-md-5">
+
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label for="" class="col-md-7 control-label">Backup employees' leave data</label>
+              </div>
+              <div class="form-group">
+                <div class="col-md-offset-2">
+                  <em>Download the full list of employees with all their leave requests. The file is in <strong>.CSV</strong> format which is compatible with MS Excel.</em>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-11">
+                  <a class="btn btn-success pull-right" href="/settings/company/backup/"><i class="fa fa-download"></i> Download backup</a>
+                </div>
+              </div>
+            </div>
+
+            <form class="form-horizontal" method="POST" action="/settings/schedule" id="company_schedule_form">
+            <input type="hidden" name="company_wide" value="1">
+            <div class="form-group">
+              <label for="" class="col-md-6 control-label">Company week schedule</label>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-2">
+                {{> schedule_widget}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-2">
+                <em>Define company wide weekly schedule. Press correspondent button to toggle working/non-working day.</em>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-11">
+                <button type="submit" class="btn btn-success pull-right">Save schedule</button>
+              </div>
+            </div>
+            </form>
+
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label for="" class="col-md-10 control-label">Calculate and carry over unused allowance</label>
+              </div>
+              <div class="form-group">
+                <div class="col-md-offset-2">
+                  <p><em>This action will carry over unused allowance for each employee from <strong>{{yearPrev}}</strong> to the current year, <strong>{{yearCurrent}}</strong>.</em></p>
+                  <p><em>Please note, employees allowance is going to be updated.</em></p>
+                </div>
+              </div>
+              <div class="form-group">
+                <form class="col-md-offset-2 col-md-11" id="calculate_carry_over_form" method="post" action="/settings/carryOverUnusedAllowance">
+                  <button class="btn btn-success pull-right" type="submit"><i class="fa fa-share"></i> Carry over allowance</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Leave Types
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label class="control-label">Leave Type Name</label>
+            <p><em>Tick one to always be on top of the list</em></p>
+          </div>
+          <div class="col-md-offset-3 col-md-2">
+            <label class="control-label">Limit</label>
+            <p><em>Days/year</em></p>
+          </div>
+        </div>
+
+        <div class="row">&nbsp;</div>
+
+        <form id="delete_leavetype_form" method="post" action="/settings/leavetypes/delete/"></form>
+        <form id="leave_type_edit_form" method="post" action="/settings/leavetypes/">
+
+        {{#unless company.leave_types.length }}
+        <div class="row">
+          <div class="col-md-4">No Leave type records</div>
+        </div>
+        {{/unless}}
+
+        {{#each company.leave_types}}
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="first_record" value="{{ this.id }}" {{# if this.sort_order }}checked="checked"{{/ if}}>
+              </span>
+              <input type="text" class="form-control" name="name__{{ this.id }}" value="{{name}}" data-tom-leave-type-order="name_{{@index}}">
+
+              <div class="input-group-btn" data-tom-color-picker="1" data-tom-leave-type-order="colour__{{@index}}">
+                <input type="hidden" name="color__{{ this.id }}" value="{{# with this }}{{ this.get_color_class }}{{/with}}">
+                <button type="button" class="btn btn-default dropdown-toggle {{# with this }}{{ this.get_color_class }}{{/with}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-paint-brush"></i></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="btn btd-default leave_type_color_1" data-tom-color-picker-css-class="leave_type_color_1">Color 1</a></li>
+                  <li><a href="#" class="btn btd-default leave_type_color_2" data-tom-color-picker-css-class="leave_type_color_2">Color 2</a></li>
+                  <li><a href="#" class="btn btd-default leave_type_color_3" data-tom-color-picker-css-class="leave_type_color_3">Color 3</a></li>
+                  <li><a href="#" class="btn btd-default leave_type_color_4" data-tom-color-picker-css-class="leave_type_color_4">Color 4</a></li>
+                  <li><a href="#" class="btn btd-default leave_type_color_5" data-tom-color-picker-css-class="leave_type_color_5">Color 5</a></li>
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-md-3">
+            <input name="use_allowance__{{ this.id }}" id="use_allowance__{{ this.id }}" type="checkbox" {{#if use_allowance}}checked="checked"{{/if}} data-tom-leave-type-order="allowance_{{@index}}">
+            <label for="use_allowance__{{ this.id }}" class="control-label">Use allowance</label>
+          </div>
+          <div class="col-md-2">
+            <input type="number" class="form-control" value="{{limit}}" name="limit__{{ this.id }}" data-tom-leave-type-order="limit_{{@index}}">
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-default pull-right leavetype-remove-btn" value="{{ this.id }}" data-tom-leave-type-order="remove_{{@index}}"><span class="fa fa-remove"></span></button>
+          </div>
+        </div>
+
+        <div class="row">&nbsp;</div>
+
+        {{/each}}
+
+        <div class="row">&nbsp;</div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-right">
+              <button class="btn btn-default" data-toggle="modal" data-target="#add_new_leave_type_modal" type="button" id="add_new_leave_type_btn">Add new</button>
+              <button type="submit" class="btn btn-success">Save changes</button>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5 setting-general-2nd-column">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Bank Holidays
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12 tst-no-bank-holidays">Bank holidays could be found <a href="/settings/bankholidays/">here</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <i class="fa fa-bomb"></i> Danger zone
+      </div>
+      <div class="panel-body">
+
+          <div class="col-md-12">
+
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label for="" class="control-label">Remove company account</label>
+              </div>
+              <div class="form-group">
+                <div class="col-md-6">
+                  <p><em>Completely erase data associated with {{company.name}}'s account.</em></p>
+                  <p><em> This is action cannot be reverted.</em></p>
+                  <p><em> It is strongly recommended to <a href="/settings/company/backup/">download</a> employees leave data first.</em></p>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#remove_company_modal" type="button"><i class="fa fa-remove"></i> Delete company account</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{{> add_new_leave_type_modal
+  container_id='add_new_leave_type_modal'
+  form_action='/settings/leavetypes/'
+}}
+
+{{> remove_company_modal
+  container_id='remove_company_modal'
+}}
+
+{{> footer }}
