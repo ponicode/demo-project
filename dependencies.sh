@@ -1,5 +1,7 @@
 npm install
-cd instrumenter
+cd javascript
+npm install
+cd ../instrumenter
 npm install
 cd api
 npm install
