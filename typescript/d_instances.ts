@@ -11,8 +11,11 @@ export class Vector {
 }
 
 function euclidian_distance(v1: Vector, v2: Vector): number {
-	if (v1.x == 0 && v2.x == 0) {
-		console.log('First dimensions are equal to zero')
+	if (dot(v1, v2) == 0) {
+		console.log('V1 and V2 are orthogonal vectors')
+	}
+	else {
+		console.log('V1 and V2 are not orthogonal vectors')
 	}
 	return (v1.x - v2.x)**2 + (v1.y - v2.y)**2 + (v1.z - v2.z)**2
 }
