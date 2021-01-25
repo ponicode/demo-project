@@ -1,4 +1,3 @@
-npm install
 cd javascript
 npm install
 cd ../instrumenter

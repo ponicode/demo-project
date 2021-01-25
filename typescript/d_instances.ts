@@ -10,10 +10,14 @@ export class Vector {
 
 }
 
-function sum(v1: Vector, v2: Vector): Vector {
-	return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z)
+function euclidian_distance(v1: Vector, v2: Vector): number {
+	if (v1.x == 0 && v2.x == 0) {
+		console.log('First dimensions are equal to zero')
+	}
+	return (v1.x - v2.x)**2 + (v1.y - v2.y)**2 + (v1.z - v2.z)**2
 }
+
 function dot(v1: Vector, v2: Vector): number {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
 }
-module.exports = { Vector , dot, sum}
+module.exports = { Vector , dot, euclidian_distance}
