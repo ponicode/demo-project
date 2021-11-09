@@ -1,6 +1,6 @@
 # Ponicode Demo Project
 
-This project is a starter kit to dive into Ponicode Unit Testing. Check the full documentation at https://www.ponicode.com/docs/get-started/installation.
+This project is a starter kit to dive into Ponicode Unit Testing. Check [**the full documentation**](https://ponicode.github.io/#/ut_extension/get_started/).
 
 ## Installation
 Create your account at **https://app.ponicode.com**
