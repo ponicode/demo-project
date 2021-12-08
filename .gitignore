@@ -28,3 +28,5 @@ yarn-error.log*
 *.test.js
 */coverage/
 jest.config.js
+javascript/__snapshots__/
+ponicode.config.json

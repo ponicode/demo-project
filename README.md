@@ -1,40 +1,20 @@
 # Ponicode Demo Project
 
-This project is a starter kit to dive into Ponicode Unit Testing. Check [**the full documentation**](https://ponicode.github.io/#/ut_extension/get_started/).
+This project is a starter kit to dive into Ponicode Unit Testing. Check our linked [**beginner tutorial**]() or
+the [full documentation](https://ponicode.github.io).
+
+## Tools
+
+Ponicode offers several tools to test your codebase like a [Vscode extension](https://ponicode.github.io/#/vscode_extension/) or an [IntelliJ plugin](https://ponicode.github.io/#/vscode_extension/). You can find the complete list on [ponicode.com](https://www.ponicode.com/download#)
 
 ## Installation
-Create your account at **https://app.ponicode.com**
+Create your account at [app.ponicode.com](https://app.ponicode.com).
 
-Install our extension for free in the **VSCode Marketplace**. 
-
-Additional Documentation on how to install and link your extension to your Ponicode is available [**HERE**][documentation]
-
+Choose your tool, for exemple you can, install our extension for free in the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=ponicode.ponicode).
 ## Table of Content
-- JavaScript Unit Testing
-    - [README][js-md]
-    - [Code][js]
-    - [Documentation][documentation]
-- TypeScript Unit Testing
-    - [README][ts-md]
-    - [Code][ts]
-    - [Documentation][documentation]
-- Python Unit Testing
-    - [README][py-md]
-    - [Code][py]
-    - [Documentation][documentation]
-- Instrumentation
-    - [README][inst-md]
-    - [Code][inst]
-    - [Documentation][documentation]
+In this repository, you'll find code examples for the following languages:
 
-
-
-[py-md]: ./python/README.md
-[js-md]: ./javascript/README.md
-[ts-md]: ./typescript/README.md
-[inst-md]: ./instrumenter/README.md
-[py]: ./python/
-[js]: ./javascript/
-[ts]: ./typescript/
-[inst]: ./instrumenter/
-[documentation]: https://ponicode.github.io
+- [JavaScript](./javascript)
+- [TypeScript](./typescript)
+- [Python](./python)
+- [Java](./java)
