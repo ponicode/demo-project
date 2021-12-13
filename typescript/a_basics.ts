@@ -1,14 +1,13 @@
-import { Client, ClientGen } from "./a_basics.d";
+import { Client, ClientGen, GenResult } from "./a_basics.d";
 
 // Primitive arguments
-function calculateCommissionTs(volume:number) {
-    var fee:number;
-    var rate:number; 
-    var commission:number; 
-    var bonus:number;
-    var award:number;
-    fee = 0.0;
-    bonus = 0.0;
+function calculateCommissionTs(volume: number) {
+    var fee: number = 0.0;
+    var rate: number;
+    var commission: number;
+    var bonus: number = 0.0;
+    var award: number;
+
     if (volume > 200000.0) {
       rate = 0.15;
       bonus = 1000.0;
@@ -37,16 +36,22 @@ function calculateCommissionTs(volume:number) {
 }
 
 // Structured arguments
-function getClientAgeGenerationTs(client: ClientGen){
+function getClientAgeGenerationTs(client: ClientGen): GenResult {
+    var res: GenResult = {
+      gen: null,
+      set: true
+    };
+
     if (client.age <= 18){
-        return "Gen.Z"
+        res.gen = "Gen.Z"
     } else if (client.age > 18 && client.age < 34){
-        return "Gen.Y"
+        res.gen = "Gen.Y"
     } else if (client.age >= 34){
-        return "Gen.X"
+        res.gen = "Gen.X"
     } else {
-        return null
+        res.set = false
     }
+    return res;
 }
 
 

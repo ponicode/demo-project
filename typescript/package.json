@@ -1,14 +1,18 @@
 {
-  "name": "main",
+  "name": "@ponicode/demo-project-typescript",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "init-ponicode": "npm ci"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.21",
     "@types/rewire": "^2.5.28",
     "jest": "^26.6.3",
     "rewire": "^5.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
   }
 }
