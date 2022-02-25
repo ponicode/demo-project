@@ -1,23 +1,50 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+name: "ponicode-ci"
 on:
-  push:
-    branches: [ master ]
+  pull_request:
+    types: [ opened, edited, synchronize ]  # rebuild any PRs and main branch changes
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  ponicode:
     runs-on: ubuntu-latest
+    env:
+      SQUAR_API_URL: "https://ponicode-glados-prod.azurewebsites.net"
+      FETCH_REPORT_RETRY_MILLISEC: 5000
     steps:
-    - uses: actions/checkout@v2
-    - uses: ponicode/unit-testing-action@master
+    - uses: actions/checkout@v1
+    - run: |
+        npm install -g ponicode
+        npm i --save-dev rewire @types/rewire jest@26 ts-jest@26 @types/jest
+    
+    # Identify which files are impacted by the Push / PR
+    - id: get_changed_files
+      uses: jitterbit/get-changed-files@v1
+      continue-on-error: true
       with:
-        repo_path: './' # default: index.docker.io
-        auth_token: ${{ secrets.AUTH_TOKEN }}
-        write_expectations: true
+        format: 'json'
+
+    # Extract branch name
+    - id: extract_branch
+      if: github.event_name == 'pull_request'
+      run: echo "::set-output name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
+    
+    # Run Ponicode SQUAR action
+    - uses: ponicode/squar_action@master
+      id: ponicode_squar
+      with:
+        repoURL: ${{github.repository}} # DO NOT MODIFY
+        impactedFiles: ${{ steps.get_changed_files.outputs.added_modified }} # DO NOT MODIFY
+        branch: ${{ steps.extract_branch.outputs.BRANCH_NAME }} # DO NOT MODIFY
+        githubToken: ${{ secrets.GITHUB_TOKEN }} # DO NOT MODIFY
+        ponicodeSquarToken: ${{ secrets.PONICODE_SQUAR_TOKEN }} # DO NOT MODIFY
+        displayFullReport: 'true'
+
+    # Run Ponicode Unit-Testing Action
+    - uses: ponicode/unit-testing-action@master
+      id: ponicode_unit_testing
+      with:
+        repoURL: ${{github.repository}} # DO NOT MODIFY
+        branch: ${{ steps.extract_branch.outputs.BRANCH_NAME }} # DO NOT MODIFY
+        githubToken: ${{ secrets.GITHUB_TOKEN }} # DO NOT MODIFY
+        ponicodeUtToken: ${{ secrets.PONICODE_TOKEN }} # DO NOT MODIFY
+        impactedFiles: ${{ steps.ponicode_squar.outputs.impacted_files }} # DO NOT MODIFY IF YOU WANT TO GENERATE TESTS ON SQUAR OUTCOME ONLY
+        commentUTs: "true"
