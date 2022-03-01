@@ -1,10 +1,10 @@
-var axios = require("axios");
+import axios from "axios";
 
-var axiosInstance = axios.create({});
+const axiosInstance = axios.create({});
 
-module.exports = {
-  get: (...x:any) => {
-    return axiosInstance.get(...x);
+export const api = {
+  get: (x: string) => {
+    return axiosInstance.get(x);
   },
   axiosInstance
 };

@@ -1,0 +1,113 @@
+
+{{> header }}
+
+<h1>Emails audit</h1>
+
+{{> show_flash_messages }}
+
+<div class="row">
+  <div class="col-md-6 lead">All emails ever been sent by the system</div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+  <div class="content">
+    <div class="col-md-3">
+      <table class="table table-hover all-departments">
+        <thead>
+          <tr>
+            <th>Filter options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>
+            <form action="/audit/email/" method="GET">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="text" name="start_date" class="form-control" id="start_date" placeholder="Start Date"
+                  data-provide="datepicker" data-date-autoclose="1" data-date-format="{{#with logged_user.company }}{{this.get_default_date_format_for_date_picker}}{{/with}}" data-date-week-start="1"
+                  value="{{#if filter.start_date }}{{as_date filter.start_date }}{{/if}}"
+                >
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="text" name="end_date" class="form-control" id="end_date" placeholder="End Date"
+                  data-provide="datepicker" data-date-autoclose="1" data-date-format="{{#with logged_user.company }}{{this.get_default_date_format_for_date_picker}}{{/with}}" data-date-week-start="1"
+                  value="{{#if filter.end_date }}{{as_date filter.end_date }}{{/if}}"
+                >
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="employee" name="user_id">
+                  <option value="">Employee to filter by</option>
+                  {{#each all_users}}
+                  <option value="{{this.id}}" {{# if_equal this.id ../filter.user_id }} selected="selected" {{/if_equal}} >{{this.full_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-info single-click">Filter</button>
+              {{# if show_reset_button }}
+              <a href="/audit/email/" class="btn btn-default">Reset</a>
+              {{/if}}
+            </form>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-9">
+      <table class="table table-hover" id="email_list">
+        <thead>
+          <tr>
+            <th>To Employee</th>
+            <th>Subject</th>
+            <th>Date And Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{# each audit_emails }}
+          <tr id="heading_{{ this.id }}" class="vpp-email-audit-entry-header">
+            <td class="user-link-cell">
+              <a href="/audit/email/?user_id={{ this.user_id}}">{{# with this.user }}{{this.full_name}}{{/with}}</a>
+            </td>
+            <td>
+              <a class="collapsed" data-toggle="collapse" data-parent="#email_list" href="#collapse_{{ this.id }}">
+                {{ this.subject }}
+              </a>
+            </td>
+            <td>
+              {{as_datetime_from_timestamp this.created_at}}
+            </td>
+          </tr>
+          <tr id="collapse_{{ this.id }}" class="collapse">
+            <td colspan=3>
+              <address>
+                <strong>To Email:</strong>
+                <a href="mailto:#">{{this.email}}</a>
+              </address>
+              <pre>{{this.body_as_text}}</pre>
+            </td>
+          </tr>
+          {{else}}
+          <tr><td colspan="3">
+            <div class="text-center">No emails recorded yet</div>
+          </td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <div class="text-center">
+        {{# if audit_emails}}
+          {{> pager pager=pager }}
+        {{/if}}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+{{> footer }}

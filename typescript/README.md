@@ -1,16 +1,11 @@
 # Ponicode Demo Project - Typescript
 
-This project is a starter kit to dive into Ponicode Unit Testing. Check the full documentation at https://www.ponicode.com/docs/get-started/installation.
+More information on the top-level [README](../README.md) or the linked [**beginner tutorial**]().
 
-## Installation
-Create your account at **https://app.ponicode.com**
-
-Install our extension for free in the **VSCode Marketplace**. 
-
-Additional Documentation on how to install and link your extension to your Ponicode is available [**HERE**](https://ponicode.github.io)
+:warning: Javascript is only supported on our **Vscode extension** and the **CLI**. If you're a IntelliJ user, please go to the [Java section](../java).
 
 ## Setup
 
-To use Ponicode on your **TypeScript** project, in addition to what is described on the [**JavaScript**](../javascript/README.md) helper section, you should have :
+To use Ponicode on your **TypeScript** project, in addition to what is described onthe top-level [README](../README.md), you should have :
 - A `tsconfig.json` file,
 - Compile your project via `tsc -p .` or `tsc -w -p .` in watch mode.

@@ -1,0 +1,1 @@
+npm ci && cd timeoff-management-application && npm ci && cd ..

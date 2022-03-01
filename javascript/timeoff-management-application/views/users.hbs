@@ -1,0 +1,73 @@
+
+{{> header }}
+
+<h1>Staff</h1>
+
+{{> show_flash_messages }}
+
+<div class="row">
+  <div class="col-md-3 lead">{{company.name}}'s staff</div>
+  <div class="col-md-3 col-md-offset-6">
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Add new employee
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="/users/import/" id="import_users_btn">Import employees</a></li>
+        <li><a href="/users/add/" id="add_new_department">Add single employee</a></li>
+      </ul>
+    </div>
+    <form action="/users/" method="GET">
+      <input type="hidden" name="department" value="{{department_id}}">
+      <input type="hidden" name="as-csv" value="1">
+      <button
+        class="btn btn-link pull-right single-click"
+        type="submit"
+        data-content="Download current page as .CSV file"
+        data-placement="top"
+        data-toggle="popover"
+        data-trigger="focus hover"
+      ><i class="fa fa-download"></i> .csv</button>
+    </form>
+  </div>
+</div>
+
+<div class="row">&nbsp;</div>
+
+<div class="col-md-3 list-group all-departments">
+  <a href="/users/" class="list-group-item{{#unless department_id }} selected-item{{/unless}}">All departments</a>
+  {{#each company.departments}}
+    <a class="list-group-item {{#if_equal ../department_id this.id}} selected-item{{/if_equal}}" href="/users/?department={{this.id}}">{{this.name}}</a>
+  {{/each}}
+</div>
+
+<div class="col-md-9">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Is Administrator?</th>
+        <th>Available allowance</th>
+        <th>Days used</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{# each users_info}}
+      <tr data-vpp-user-row="{{this.user_id}}">
+        <td class="user-link-cell"><a href="/users/edit/{{this.user_id}}/">{{#unless this.is_active}}<s>{{/unless}}{{this.user_full_name}}{{#unless this.is_active}}</s>{{/unless}}</a></td>
+        <td class="user_department"><a href="/settings/departments/edit/{{ this.department_id }}/">{{this.department_name}}</a></td>
+        <td>{{# if this.is_admin }}Yes{{else}}{{/if}}</td>
+        <td class="vpp-days-remaining">{{ this.number_of_days_available_in_allowance }}</td>
+        <td class="vpp-days-used">{{this.number_of_days_taken_from_allowance}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<div class="row">&nbsp;</div>
+
+{{> footer }}
