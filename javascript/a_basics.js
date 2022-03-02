@@ -5,7 +5,7 @@ function calculateCommissionJs(volume) {
     fee = 0.0;
     bonus = 0.0;
     if (volume > 200000.0) {
-      rate = 0.15;
+      rate = 0.15; 
       bonus = 1000.0;
     } else {
       if (volume > 100000.0) rate = 0.123;
