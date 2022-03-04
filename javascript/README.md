@@ -62,7 +62,7 @@ bash setup.sh
 
 ## Mocking with Ponicode Unit Test
 - Open the [c_mockups.js file](./c_mockups.js)
-- Click in the body of the function `get_and_validate_department`
+- Click in the body of the function `getCurrencyRatesFromCustomJs`
 - You should see two decorators appearing above your function `Ponicode:Flash Test` and `Ponicode:Unit test`
 - Click on `Ponicode:Unit test`
 - An interface will open on the right with two sections `Unit tests` and `Suggestions`. Section `Unit tests` represents all your existing test cases. Section `Suggestions` is a list of representations of test cases that Ponicode's AI engine thinks you should pick from to increase your code quality.

@@ -10,7 +10,7 @@ Ponicode uses a runner to verify that your tests pass. For this you should verif
 If not already done just enter this command in the `javascript` folder
 
 ```
-cd path/to/demo-project/javascript
+cd path/to/demo-project/typescript
 bash setup.sh
 ```
 
@@ -40,7 +40,12 @@ bash setup.sh
 ![Drag Racing](screenshots/coverage.png)
 ![Drag Racing](screenshots/coverage.gif)
 
-## Prevent regressions and bugs with Ponicode Unit test
+## Prevent regressions and bugs with Ponicode Unit test (example in Javascript and you can do it the exact same way in Typescript)
+- Go in [Javasript folder](../javascript/)
+- Install the dependencies 
+```
+cd path/to/demo-project/javascript && bash setup.sh
+```
 - Open the [departments.js file](../javascript/timeoff-management-application/lib/route/departments.js)
 - Click in the body of the function `get_and_validate_department`
 - You should see two decorators appearing above your function `Ponicode:Flash Test` and `Ponicode:Unit test`
@@ -63,7 +68,7 @@ bash setup.sh
 
 ## Mocking with Ponicode Unit Test
 - Open the [c_mockups.ts file](./c_mockups.ts)
-- Click in the body of the function `get_and_validate_department`
+- Click in the body of the function `getCurrencyRatesFromCustomJs`
 - You should see two decorators appearing above your function `Ponicode:Flash Test` and `Ponicode:Unit test`
 - Click on `Ponicode:Unit test`
 - An interface will open on the right with two sections `Unit tests` and `Suggestions`. Section `Unit tests` represents all your existing test cases. Section `Suggestions` is a list of representations of test cases that Ponicode's AI engine thinks you should pick from to increase your code quality.
