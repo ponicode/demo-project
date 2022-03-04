@@ -2,6 +2,11 @@ export type ClientGen = {
   age: Number
 }
 
+export type GenResult = {
+  gen: String | null,
+  set: Boolean
+}
+
 export type ClientOrder = {
   order_id: String,
   currency: String,

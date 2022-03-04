@@ -10,17 +10,10 @@ export class Vector {
 
 }
 
-function euclidian_distance(v1: Vector, v2: Vector): number {
-	if (dot(v1, v2) == 0) {
-		console.log('V1 and V2 are orthogonal vectors')
-	}
-	else {
-		console.log('V1 and V2 are not orthogonal vectors')
-	}
-	return (v1.x - v2.x)**2 + (v1.y - v2.y)**2 + (v1.z - v2.z)**2
+function sum(v1: Vector, v2: Vector): Vector {
+	return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z)
 }
-
 function dot(v1: Vector, v2: Vector): number {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
 }
-module.exports = { Vector , dot, euclidian_distance}
+module.exports = { Vector , dot, sum}

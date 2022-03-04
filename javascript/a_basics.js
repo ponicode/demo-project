@@ -1,10 +1,11 @@
 // Primitive arguments
 function calculateCommissionJs(volume) {
     var fee, rate, commission, bonus, award;
+
     fee = 0.0;
     bonus = 0.0;
     if (volume > 200000.0) {
-      rate = 0.15;
+      rate = 0.15; 
       bonus = 1000.0;
     } else {
       if (volume > 100000.0) rate = 0.123;
@@ -32,15 +33,20 @@ function calculateCommissionJs(volume) {
 
 // Structured arguments
 function getClientAgeGenerationJs(client){
-    if (client.age <= 18){
-        return "Gen.Z"
-    } else if (client.age > 18 && client.age < 34){
-        return "Gen.Y"
-    } else if (client.age >= 34){
-        return "Gen.X"
-    } else {
-        return null
+    const res = {
+      gen: null,
+      set: true
     }
+    if (client.age <= 18){
+        res.gen = "Gen.Z"
+    } else if (client.age > 18 && client.age < 34){
+        res.gen = "Gen.Y"
+    } else if (client.age >= 34){
+        res.gen = "Gen.X"
+    } else {
+        res.set = false
+    }
+    return res
 }
 
 
@@ -69,4 +75,4 @@ function isEmailValidJs(email) {
     const unicodePattern = /[^\x00-\x7F]/;
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return !unicodePattern.test(email) && re.test(email.toLowerCase());
-  }
+}

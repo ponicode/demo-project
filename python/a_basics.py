@@ -30,14 +30,19 @@ def calculate_commission_py(volume):
 
 # Structured arguments
 def get_client_age_generation_py(client):
+    res = {}
+    res['gen'] = None
+    res['set'] = True
+    
     if client['age'] <= 18:
-        return "Gen.Z"
+        res['gen'] = "Gen.Z"
     elif client.get("age") > 18 and client["age"] < 34:
-        return "Gen.Y"
+        res['gen'] = "Gen.Y"
     elif client["age"] >= 34:
-        return "Gen.X"
+        res['gen'] = "Gen.X"
     else:
-        return None
+        res['set'] = False
+    return res
 
 
 # Structured arguments with deep nesting
@@ -59,3 +64,5 @@ import re
 def isEmailValidPy(email):
     result = re.search(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", email)
     return bool(result)
+    
+get_client_age_generation_py({'age': 12})
